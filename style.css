@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #87ceeb, #f7f9fc);
+}
+
+.hero-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background: url('https://source.unsplash.com/1920x1080/?travel') no-repeat center center/cover;
+}
+
+.hero-section h1 {
+    font-size: 4rem;
+    animation: fadeIn 2s;
+}
+
+.hero-section p {
+    font-size: 1.5rem;
+    animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.current-time {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+}
