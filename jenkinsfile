@@ -7,7 +7,7 @@ pipeline {
         stage('Continuous integration') {
             steps {
                 // Cloner le projet depuis GitHub
-                git branch: 'main', url: 'https://github.com/fredericEducentre/jenkins_project_html.git'
+                git branch: 'main', url: 'https://github.com/jabdoulie/jenkins_project_html.git'
                 
                 // Lancer l'analyse SonarQube
                 sh '''
