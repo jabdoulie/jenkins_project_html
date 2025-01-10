@@ -1,0 +1,40 @@
+pipeline {
+    agent {
+        label 'test'  // Utilise l'agent 'test' spécifié
+    }
+
+    stages {
+        stage('Continuous integration') {
+            steps {
+                // Cloner le projet depuis GitHub
+                git branch: 'main', url: 'https://github.com/fredericEducentre/jenkins_project_html.git'
+                
+                // Lancer l'analyse SonarQube
+                sh '''
+                sonar-scanner \
+                    -Dsonar.projectKey=html-project \
+                    -Dsonar.sources=. \
+                    -Dsonar.host.url=http://192.168.8.10:9000 \
+                    -Dsonar.token=sqp_226bfbcdbfbd416851c4066e53240b8035b98fa0
+                '''
+            }
+        }
+
+        stage('Construire l\'image Docker') {
+            steps {
+                script {
+                    // Construire l'image Docker à partir du Dockerfile
+                    sh 'docker build -t html_project:latest .'
+                }
+            }
+        }
+
+    }
+
+    post {
+        always {
+            // Nettoyage des ressources après exécution
+            echo 'Pipeline terminé'
+        }
+    }
+}
